@@ -170,6 +170,7 @@
     <script>
         let quizBlocks = [];
         let currentSlideIndex = 0;
+        let sections = [];
 
         const loadingEl = document.getElementById('loading');
         const headerEl = document.getElementById('header');
@@ -186,33 +187,9 @@
                 if (xhr.status === 200 || xhr.status === 0) {
                     try {
                         const rawData = JSON.parse(xhr.responseText);
-                        quizBlocks = [];
-                        rawData.forEach(section => {
-                            // 1. Section header
-                            quizBlocks.push({
-                                type: 'section-header',
-                                sectionName: section.sectionName
-                            });
-                            // 2. Všechny otázky sekce
-                            section.questions.forEach(question => {
-                                quizBlocks.push({
-                                    type: 'question',
-                                    ...question
-                                });
-                            });
-                            // 3. Answers header - POUZE název
-                            quizBlocks.push({
-                                type: 'answers-header',
-                                sectionName: section.sectionName
-                            });
-                            // 4. Jednotlivé odpovědi
-                            section.questions.forEach(question => {
-                                quizBlocks.push({
-                                    type: 'answer',
-                                    ...question
-                                });
-                            });
-                        });
+                        sections = rawData;
+                        
+                        buildSlidesForSections(rawData);
                         console.log(`Načteno ${quizBlocks.length} slidů`);
                         initApp();
                     } catch (e) {
@@ -227,13 +204,50 @@
             xhr.send();
         }
 
+        function buildSlidesForSections(sectionsData) {
+            quizBlocks = [];
+            
+            for (let i = 0; i < sectionsData.length; i += 2) {
+                const section1 = sectionsData[i];
+                
+                // 1. Section 1 header + otázky
+                quizBlocks.push({ type: 'section-header', sectionName: section1.sectionName });
+                section1.questions.forEach(question => {
+                    quizBlocks.push({ type: 'question', ...question });
+                });
+                
+                // 2. Pokud existuje sekce 2
+                if (i + 1 < sectionsData.length) {
+                    const section2 = sectionsData[i + 1];
+                    quizBlocks.push({ type: 'section-header', sectionName: section2.sectionName });
+                    section2.questions.forEach(question => {
+                        quizBlocks.push({ type: 'question', ...question });
+                    });
+                    
+                    // 3. ODPOVĚDI pro SEKCI 1 (po 2 blocích otázek)
+                    quizBlocks.push({ type: 'answers-header', sectionName: section1.sectionName });
+                    section1.questions.forEach(question => {
+                        quizBlocks.push({ type: 'answer', ...question });
+                    });
+                    
+                    // 4. ODPOVĚDI pro SEKCI 2
+                    quizBlocks.push({ type: 'answers-header', sectionName: section2.sectionName });
+                    section2.questions.forEach(question => {
+                        quizBlocks.push({ type: 'answer', ...question });
+                    });
+                } else {
+                    // Poslední sekce (lichý počet) - její odpovědi
+                    quizBlocks.push({ type: 'answers-header', sectionName: section1.sectionName });
+                    section1.questions.forEach(question => {
+                        quizBlocks.push({ type: 'answer', ...question });
+                    });
+                }
+            }
+        }
+
         function useFallback() {
-            quizBlocks = [
-                { type: 'section-header', sectionName: 'TEST' },
-                { type: 'question', header: 'Otázka 1', content: 'Co?', select: ['A', 'B'], correct: 0 },
-                { type: 'answers-header', sectionName: 'TEST' },
-                { type: 'answer', header: 'Otázka 1', content: 'Co?', select: ['A', 'B'], correct: 0 }
-            ];
+            sections = [{ sectionName: 'TEST1', questions: [{ header: 'Q1', content: 'Co?', select: ['A', 'B'], correct: 0 }] }];
+            buildSlidesForSections(sections);
             initApp();
         }
 
@@ -243,7 +257,6 @@
             contentEl.style.display = 'flex';
             document.getElementById('controls').style.display = 'flex';
             
-            // Klávesové zkratky
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowLeft') {
                     prevBtn.click();
@@ -285,7 +298,6 @@
                 }
             }
             else if (slide.type === 'answers-header') {
-                // POUZE "Odpovědi - $sectionName" bez dalšího textu
                 headerEl.textContent = `ODPOVĚDI - ${slide.sectionName}`;
                 slideContentEl.innerHTML = '';
                 answersEl.innerHTML = '';
@@ -295,7 +307,6 @@
                 slideContentEl.innerHTML = slide.content;
                 
                 if (slide.correctStr) {
-                    // BEZ "SPRÁVNĚ: " - jen obsah correctStr
                     slideContentEl.innerHTML += `<div class="correctStr">${slide.correctStr}</div>`;
                     answersEl.innerHTML = '';
                 } else if (typeof slide.correct === 'number' && slide.select && Array.isArray(slide.select)) {
