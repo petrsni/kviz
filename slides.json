@@ -1,0 +1,166 @@
+[
+    [
+        {
+            "header": "Otázka 1",
+            "content": "V jaký den se lenča narodila?",
+            "select": [
+                "Pondělí",
+                "Úterý",
+                "Středa",
+                "Čtvrtek"
+            ],
+            "correct": 0
+        },
+        {
+            "header": "Otázka 2",
+            "content": "Narozeniny ve stejný den má která z následujících osobností?",
+            "select": [
+                "Katy Perry",
+                "Miloš Zeman",
+                "Britney Spears",
+                "Jiřina Bohdalová"
+            ],
+            "correct": 2
+        },
+        {
+            "header": "Otázka 3",
+            "content": "Jak se jmenoval třídní učitel na druhém stupni ZŠ?",
+            "select": [
+                "Říha",
+                "Novák",
+                "Čapek",
+                "Plachý"
+            ],
+            "correct":0
+        },
+        {
+            "header": "Otázka 4",
+            "content": "Na jakou střední školu chodila?",
+            "select": null,
+            
+            "correctStr":"Na obchodní akademii"
+        },
+        {
+            "header": "Otázka 5",
+            "content": "Jaké zaměření studovala na VŠ?",
+            "select": [
+                "Matematika + Geografie",
+                "Matematika + Fyzika",
+                "Matematika + Speciální pedagogika",
+                "Český jazyk + Matematika"
+            ],
+            "correct" : 2
+        }
+    ],
+    [
+        {
+            "header": "Otázka 6",
+            "content": "Kolik let celkem studovala na VŠ?",
+            "select": null,
+            "correctStr": "nevím, zjistit"
+        },
+        {
+            "header": "Otázka 7",
+            "content": "Na jakou pozici nastupuje od ledna v nové práci?",
+            "select": [
+                "Účetní",
+                "Speciální pedagog",
+                "Vedoucí DM",
+                "Testér spacích pytlů"
+            ],
+            "correct": 1
+        },
+        {
+            "header": "Otázka 8",
+            "content": "Jak dlouhou dobu jsme spolu?",
+            "select": [
+                "8",
+                "9",
+                "10",
+                "11"
+            ],
+            "correct": 2
+        },
+        {
+            "header": "Otázka 9",
+            "content": "Po svatbě kterého z přítomných párů jsme spolu začali chodit?",
+            "correctStr": "Lucka+Martin"
+        },
+        {
+            "header": "Otázka 10",
+            "content": "Kterého z členů kapely Lunetic měla nejraději?",
+            "select": [
+                "Martin",
+                "David",
+                "Aleš",
+                "Vašek"
+            ],
+            "correct": 3
+        }
+    ],
+    [
+        {
+            "header": "Otázka 11",
+            "content": "Jaký je Leničky oblíbený film s Brucem Willisem v hlavní roli?",
+            "select": [
+                "Pulp Fiction",
+                "Armageddon",
+                "Můj soused zabiják",
+                "Titanic"
+            ],
+            "correct": 1
+        },
+        {
+            "header": "Otázka 12",
+            "content": "Teď uslyšíte kousek oblíbené písničky. Víte ze kterého filmu je?",
+            "select": null,
+            "correctStr": "Trainspotting"
+        },
+        {
+            "header": "Otázka 13",
+            "content": "Oblíbená kavárna/bar?",
+            "select": [
+                "Ateliér",
+                "Gold bar ('Albert')",
+                "Black Sheep",
+                "Vrbičky"
+            ],
+            "correct": 1
+        },
+        {
+            "header": "Otázka 14",
+            "content": "Ze kterého festivalu pochází tato fotka?<br><img src = './img/fest.png'>",
+            "select": [
+                "Czechtekk",
+                "Sázavafest",
+                "Independent fest",
+                "Rock for people"
+            ],
+            "correct": 2
+        },
+        {
+            "header": "Otázka 15",
+            "content": "Kolik let bylo dnešní oslavenkyni na této fotce?<br><img src = './img/mladalenka.png'>",
+            "select": null,
+            "correctStr": 18
+        },
+        {
+            "header": "Otázka 16",
+            "content": "Jak se jmenuje pes na obrázku? <br><img src = './img/pes.png'>",
+            "select": null,
+            "correctStr": "Čenda"
+        },
+        {
+            "header": "Otázka 17",
+            "content": "Kdo je nejčerstvější přírůstek do rodiny",
+            "select": ["Vojta", "Albert", "Jakub", "Adam"],
+            "correct": 1
+        },
+        {
+            "header": "Bonusová otázka",
+            "content": "Kolik knih je asi v Lenčině knihovně?",
+            
+            "correctStr": "hodně. musím spočítat"
+        }
+    ]
+]
