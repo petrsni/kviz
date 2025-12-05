@@ -1,186 +1,337 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hospodský kvíz</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body, html { height: 100%; background: black; color: white; font-family: 'Arial', sans-serif; overflow: hidden; }
-  #header { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.9); font-size: 3em; font-weight: bold; text-align: center; padding: 20px; z-index: 100; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); border-bottom: 3px solid rgba(255,255,255,0.2); }
-  #content { height: calc(100vh - 120px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px 100px 20px; margin-top: 120px; }
-  #slide-content { font-size: 3em; line-height: 1.4; max-width: 90%; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 30px; }
-  .correctStr { 
-    background: rgba(0,255,0,0.6) !important; 
-    color: #00ff00 !important; 
-    text-shadow: 0 0 20px rgba(0,255,0,0.8) !important;
-    padding: 15px 25px !important;
-    border-radius: 15px !important;
-    font-size: 2.2em !important;
-    font-weight: bold !important;
-    box-shadow: 0 0 30px rgba(0,255,0,0.6) !important;
-    display: block;
-    margin-top: 20px;
-  }
-  #answers { display: flex; flex-direction: column; gap: 25px; max-width: 900px; width: 90%; }
-  .answer { background: rgba(255,255,255,0.08); color: white; padding: 25px 35px; font-size: 1.8em; font-weight: bold; text-align: center; }
-  .answer.correct { background: rgba(0,255,0,0.6) !important; color: #00ff00 !important; text-shadow: 0 0 20px rgba(0,255,0,0.8); font-size: 2em; }
-  #controls { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
-  button { background: rgba(255,255,255,0.1); color: white; border: 2px solid rgba(255,255,255,0.3); padding: 15px 25px; margin-left: 10px; cursor: pointer; font-size: 1.1em; font-weight: bold; border-radius: 5px; backdrop-filter: blur(10px); transition: all 0.3s; }
-  button:hover:not(:disabled) { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.6); }
-  button:disabled { opacity: 0.3; cursor: default; }
-  @media (max-width: 768px) { #header { font-size: 2em; padding: 15px; } #slide-content { font-size: 2em; } .answer, .correctStr { font-size: 1.4em; padding: 20px 25px; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospodský kvíz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            background: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.9);
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            z-index: 100;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            border-bottom: 3px solid rgba(255,255,255,0.2);
+        }
+        
+        #content {
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px 100px 20px;
+            margin-top: 120px;
+        }
+        
+        #slide-content {
+            font-size: 3em;
+            line-height: 1.4;
+            max-width: 90%;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 30px;
+        }
+        
+        .correctStr {
+            background: rgba(0,255,0,0.6) !important;
+            color: #00ff00 !important;
+            text-shadow: 0 0 20px rgba(0,255,0,0.8) !important;
+            padding: 15px 25px !important;
+            border-radius: 15px !important;
+            font-size: 2.2em !important;
+            font-weight: bold !important;
+            box-shadow: 0 0 30px rgba(0,255,0,0.6) !important;
+            display: block;
+            margin-top: 20px;
+        }
+        
+        #answers {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 900px;
+            width: 90%;
+        }
+        
+        .answer {
+            background: rgba(255,255,255,0.08);
+            color: white;
+            padding: 25px 35px;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        .answer.correct {
+            background: rgba(0,255,0,0.6) !important;
+            color: #00ff00 !important;
+            text-shadow: 0 0 20px rgba(0,255,0,0.8);
+            font-size: 2em;
+            transform: scale(1.05);
+        }
+        
+        #controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 15px 25px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        button:hover:not(:disabled) {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.6);
+        }
+        
+        button:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+        
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+        }
+        
+        @media (max-width: 768px) {
+            #header {
+                font-size: 2em;
+                padding: 15px;
+            }
+            
+            #slide-content {
+                font-size: 2em;
+            }
+            
+            .answer, .correctStr {
+                font-size: 1.4em;
+                padding: 20px 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div id="loading">Načítám...</div>
-<div id="header" style="display: none;"></div>
-<div id="content" style="display: none;">
-  <div id="slide-content"></div>
-  <div id="answers"></div>
-</div>
-<div id="controls" style="display: none;">
-  <button id="prev" disabled>&lt; Zpět</button>
-  <button id="next">Další &gt;</button>
-</div>
-
-<script>
-  let quizBlocks = [];
-  let currentBlockIndex = 0;
-  let currentSlideIndex = 0;
-  let showAnswersMode = false;
-
-  const loadingEl = document.getElementById('loading');
-  const headerEl = document.getElementById('header');
-  const contentEl = document.getElementById('content');
-  const slideContentEl = document.getElementById('slide-content');
-  const answersEl = document.getElementById('answers');
-  const prevBtn = document.getElementById('prev');
-  const nextBtn = document.getElementById('next');
-
-  function loadSlides() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'slides.json', true);
+    <div id="loading">Načítám...</div>
     
-    xhr.onload = function() {
-      if (xhr.status === 200 || xhr.status === 0) {
-        try {
-          const rawData = JSON.parse(xhr.responseText);
-          quizBlocks = Array.isArray(rawData[0]) ? rawData : [rawData];
-          console.log(`✅ Načteno ${quizBlocks.length} bloků`);
-          initApp();
-          showSlide();
-        } catch (e) {
-          console.error('JSON chyba:', e);
-          useFallback();
+    <div id="header" style="display: none;"></div>
+    
+    <div id="content" style="display: none;">
+        <div id="slide-content"></div>
+        <div id="answers"></div>
+    </div>
+    
+    <div id="controls" style="display: none;">
+        <button id="prev" disabled>&lt; Zpět</button>
+        <button id="next">Další &gt;</button>
+    </div>
+
+    <script>
+        let quizBlocks = [];
+        let currentSlideIndex = 0;
+
+        const loadingEl = document.getElementById('loading');
+        const headerEl = document.getElementById('header');
+        const contentEl = document.getElementById('content');
+        const slideContentEl = document.getElementById('slide-content');
+        const answersEl = document.getElementById('answers');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+
+        function loadSlides() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'slides.json', true);
+            xhr.onload = function() {
+                if (xhr.status === 200 || xhr.status === 0) {
+                    try {
+                        const rawData = JSON.parse(xhr.responseText);
+                        quizBlocks = [];
+                        rawData.forEach(section => {
+                            // 1. Section header
+                            quizBlocks.push({
+                                type: 'section-header',
+                                sectionName: section.sectionName
+                            });
+                            // 2. Všechny otázky sekce
+                            section.questions.forEach(question => {
+                                quizBlocks.push({
+                                    type: 'question',
+                                    ...question
+                                });
+                            });
+                            // 3. Answers header - POUZE název
+                            quizBlocks.push({
+                                type: 'answers-header',
+                                sectionName: section.sectionName
+                            });
+                            // 4. Jednotlivé odpovědi
+                            section.questions.forEach(question => {
+                                quizBlocks.push({
+                                    type: 'answer',
+                                    ...question
+                                });
+                            });
+                        });
+                        console.log(`Načteno ${quizBlocks.length} slidů`);
+                        initApp();
+                    } catch (e) {
+                        console.error('JSON chyba:', e);
+                        useFallback();
+                    }
+                } else {
+                    useFallback();
+                }
+            };
+            xhr.onerror = useFallback;
+            xhr.send();
         }
-      } else {
-        useFallback();
-      }
-    };
-    xhr.onerror = useFallback;
-    xhr.send();
-  }
 
-  function useFallback() {
-    quizBlocks = [[{
-      "header": "TEST correctStr", 
-      "content": "Na jakou školu chodila?",
-      "select": null,
-      "correctStr": "Na obchodní akademii"
-    }]];
-  }
+        function useFallback() {
+            quizBlocks = [
+                { type: 'section-header', sectionName: 'TEST' },
+                { type: 'question', header: 'Otázka 1', content: 'Co?', select: ['A', 'B'], correct: 0 },
+                { type: 'answers-header', sectionName: 'TEST' },
+                { type: 'answer', header: 'Otázka 1', content: 'Co?', select: ['A', 'B'], correct: 0 }
+            ];
+            initApp();
+        }
 
-  function initApp() {
-    loadingEl.style.display = 'none';
-    headerEl.style.display = 'block';
-    contentEl.style.display = 'flex';
-    document.getElementById('controls').style.display = 'block';
-  }
+        function initApp() {
+            loadingEl.style.display = 'none';
+            headerEl.style.display = 'block';
+            contentEl.style.display = 'flex';
+            document.getElementById('controls').style.display = 'flex';
+            
+            // Klávesové zkratky
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                }
+            });
+            
+            showSlide();
+        }
 
-  function showSlide() {
-    const currentBlock = quizBlocks[currentBlockIndex];
-    
-    // ODPOVĚDI slide
-    if (currentSlideIndex === currentBlock.length && !showAnswersMode) {
-      headerEl.textContent = "ODPOVĚDI";
-      slideContentEl.innerHTML = "";
-      answersEl.innerHTML = '';
-      showAnswersMode = true;
-      currentSlideIndex = 0;
-      updateButtons();
-      return;
-    }
-    
-    const slide = currentBlock[currentSlideIndex];
-    headerEl.textContent = slide.header;
-    
-    // ZOBRAZENÍ OTÁZKY + SPRÁVNÉ ODPOVĚDI (jednoduché!)
-    if (showAnswersMode) {
-      slideContentEl.innerHTML = slide.content;
-      
-      // PŘIDEJ SPRÁVNÚ ODPOVĚĎ POD OTÁZKU
-      if (slide.correctStr) {
-        slideContentEl.innerHTML += `<div class="correctStr">SPRÁVNĚ: ${slide.correctStr}</div>`;
-        console.log(`ZOBRAZENO correctStr: ${slide.correctStr}`);
-      }
-    } else {
-      slideContentEl.innerHTML = slide.content;
-    }
-    
-    // Odpovědi s písmeny
-    if (slide.select && Array.isArray(slide.select)) {
-      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      if (showAnswersMode && typeof slide.correct === 'number') {
-        answersEl.innerHTML = slide.select.map((answer, i) => 
-          `<div class="answer ${i === slide.correct ? 'correct' : ''}">${letters[i]}) ${answer}</div>`
-        ).join('');
-      } else {
-        answersEl.innerHTML = slide.select.map((answer, i) => 
-          `<div class="answer">${letters[i]}) ${answer}</div>`
-        ).join('');
-      }
-    } else {
-      answersEl.innerHTML = '';
-    }
-    
-    updateButtons();
-  }
+        function showSlide() {
+            if (currentSlideIndex >= quizBlocks.length) {
+                headerEl.textContent = 'KONEC';
+                slideContentEl.innerHTML = '<div style="font-size: 2.5em; margin-top: 100px;">Děkuji za pozornost!</div>';
+                answersEl.innerHTML = '';
+                updateButtons();
+                return;
+            }
 
-  function updateButtons() {
-    prevBtn.disabled = currentBlockIndex === 0 && currentSlideIndex === 0 && !showAnswersMode;
-  }
+            const slide = quizBlocks[currentSlideIndex];
 
-  prevBtn.onclick = () => {
-    if (currentSlideIndex > 0) currentSlideIndex--;
-    else if (currentBlockIndex > 0) {
-      currentBlockIndex--;
-      currentSlideIndex = quizBlocks[currentBlockIndex].length - 1;
-      showAnswersMode = true;
-    }
-    showSlide();
-  };
+            if (slide.type === 'section-header') {
+                headerEl.textContent = 'SEKCE';
+                slideContentEl.innerHTML = `<div style="font-size: 3.5em; font-weight: bold; text-shadow: 0 0 30px rgba(0, 255, 0, 0.8);">${slide.sectionName}</div>`;
+                answersEl.innerHTML = '';
+            } 
+            else if (slide.type === 'question') {
+                headerEl.textContent = slide.header || 'OTÁZKA';
+                slideContentEl.innerHTML = slide.content;
+                
+                if (slide.select && Array.isArray(slide.select)) {
+                    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    answersEl.innerHTML = slide.select
+                        .map((answer, i) => `<div class="answer">${letters[i]}. ${answer}</div>`)
+                        .join('');
+                } else {
+                    answersEl.innerHTML = '';
+                }
+            }
+            else if (slide.type === 'answers-header') {
+                // POUZE "Odpovědi - $sectionName" bez dalšího textu
+                headerEl.textContent = `ODPOVĚDI - ${slide.sectionName}`;
+                slideContentEl.innerHTML = '';
+                answersEl.innerHTML = '';
+            }
+            else if (slide.type === 'answer') {
+                headerEl.textContent = slide.header || 'ODPOVĚĎ';
+                slideContentEl.innerHTML = slide.content;
+                
+                if (slide.correctStr) {
+                    // BEZ "SPRÁVNĚ: " - jen obsah correctStr
+                    slideContentEl.innerHTML += `<div class="correctStr">${slide.correctStr}</div>`;
+                    answersEl.innerHTML = '';
+                } else if (typeof slide.correct === 'number' && slide.select && Array.isArray(slide.select)) {
+                    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    answersEl.innerHTML = slide.select
+                        .map((answer, i) => 
+                            `<div class="answer ${i === slide.correct ? 'correct' : ''}">${letters[i]}. ${answer}</div>`
+                        )
+                        .join('');
+                } else {
+                    answersEl.innerHTML = '';
+                }
+            }
 
-  nextBtn.onclick = () => {
-    const currentBlock = quizBlocks[currentBlockIndex];
-    if (!showAnswersMode) {
-      if (currentSlideIndex < currentBlock.length - 1) {
-        currentSlideIndex++;
-      } else {
-        showAnswersMode = true;
-        currentSlideIndex = 0;
-      }
-    } else if (currentSlideIndex < currentBlock.length - 1) {
-      currentSlideIndex++;
-    } else if (currentBlockIndex + 1 < quizBlocks.length) {
-      currentBlockIndex++;
-      currentSlideIndex = 0;
-      showAnswersMode = false;
-    }
-    showSlide();
-  };
+            updateButtons();
+        }
 
-  loadSlides();
-</script>
+        function updateButtons() {
+            prevBtn.disabled = currentSlideIndex === 0;
+            
+            prevBtn.onclick = () => {
+                if (currentSlideIndex > 0) {
+                    currentSlideIndex--;
+                    showSlide();
+                }
+            };
+
+            nextBtn.onclick = () => {
+                if (currentSlideIndex < quizBlocks.length - 1) {
+                    currentSlideIndex++;
+                    showSlide();
+                }
+            };
+        }
+
+        loadSlides();
+    </script>
 </body>
 </html>
