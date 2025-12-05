@@ -1,166 +1,176 @@
 [
-    [
-        {
-            "header": "Otázka 1",
-            "content": "V jaký den se lenča narodila?",
-            "select": [
-                "Pondělí",
-                "Úterý",
-                "Středa",
-                "Čtvrtek"
-            ],
-            "correct": 0
-        },
-        {
-            "header": "Otázka 2",
-            "content": "Narozeniny ve stejný den má která z následujících osobností?",
-            "select": [
-                "Katy Perry",
-                "Miloš Zeman",
-                "Britney Spears",
-                "Jiřina Bohdalová"
-            ],
-            "correct": 2
-        },
-        {
-            "header": "Otázka 3",
-            "content": "Jak se jmenoval třídní učitel na druhém stupni ZŠ?",
-            "select": [
-                "Říha",
-                "Novák",
-                "Čapek",
-                "Plachý"
-            ],
-            "correct":0
-        },
-        {
-            "header": "Otázka 4",
-            "content": "Na jakou střední školu chodila?",
-            "select": null,
-            
-            "correctStr":"Na obchodní akademii"
-        },
-        {
-            "header": "Otázka 5",
-            "content": "Jaké zaměření studovala na VŠ?",
-            "select": [
-                "Matematika + Geografie",
-                "Matematika + Fyzika",
-                "Matematika + Speciální pedagogika",
-                "Český jazyk + Matematika"
-            ],
-            "correct" : 2
-        }
-    ],
-    [
-        {
-            "header": "Otázka 6",
-            "content": "Kolik let celkem studovala na VŠ?",
-            "select": null,
-            "correctStr": "nevím, zjistit"
-        },
-        {
-            "header": "Otázka 7",
-            "content": "Na jakou pozici nastupuje od ledna v nové práci?",
-            "select": [
-                "Účetní",
-                "Speciální pedagog",
-                "Vedoucí DM",
-                "Testér spacích pytlů"
-            ],
-            "correct": 1
-        },
-        {
-            "header": "Otázka 8",
-            "content": "Jak dlouhou dobu jsme spolu?",
-            "select": [
-                "8",
-                "9",
-                "10",
-                "11"
-            ],
-            "correct": 2
-        },
-        {
-            "header": "Otázka 9",
-            "content": "Po svatbě kterého z přítomných párů jsme spolu začali chodit?",
-            "correctStr": "Lucka+Martin"
-        },
-        {
-            "header": "Otázka 10",
-            "content": "Kterého z členů kapely Lunetic měla nejraději?",
-            "select": [
-                "Martin",
-                "David",
-                "Aleš",
-                "Vašek"
-            ],
-            "correct": 3
-        }
-    ],
-    [
-        {
-            "header": "Otázka 11",
-            "content": "Jaký je Leničky oblíbený film s Brucem Willisem v hlavní roli?",
-            "select": [
-                "Pulp Fiction",
-                "Armageddon",
-                "Můj soused zabiják",
-                "Titanic"
-            ],
-            "correct": 1
-        },
-        {
-            "header": "Otázka 12",
-            "content": "Teď uslyšíte kousek oblíbené písničky. Víte ze kterého filmu je?",
-            "select": null,
-            "correctStr": "Trainspotting"
-        },
-        {
-            "header": "Otázka 13",
-            "content": "Oblíbená kavárna/bar?",
-            "select": [
-                "Ateliér",
-                "Gold bar ('Albert')",
-                "Black Sheep",
-                "Vrbičky"
-            ],
-            "correct": 1
-        },
-        {
-            "header": "Otázka 14",
-            "content": "Ze kterého festivalu pochází tato fotka?<br><img src = './img/fest.png'>",
-            "select": [
-                "Czechtekk",
-                "Sázavafest",
-                "Independent fest",
-                "Rock for people"
-            ],
-            "correct": 2
-        },
-        {
-            "header": "Otázka 15",
-            "content": "Kolik let bylo dnešní oslavenkyni na této fotce?<br><img src = './img/mladalenka.png'>",
-            "select": null,
-            "correctStr": 18
-        },
-        {
-            "header": "Otázka 16",
-            "content": "Jak se jmenuje pes na obrázku? <br><img src = './img/pes.png'>",
-            "select": null,
-            "correctStr": "Čenda"
-        },
-        {
-            "header": "Otázka 17",
-            "content": "Kdo je nejčerstvější přírůstek do rodiny",
-            "select": ["Vojta", "Albert", "Jakub", "Adam"],
-            "correct": 1
-        },
-        {
-            "header": "Bonusová otázka",
-            "content": "Kolik knih je asi v Lenčině knihovně?",
-            
-            "correctStr": "hodně. musím spočítat"
-        }
-    ]
+    {
+        "sectionName": "Aktuality",
+        "questions": [
+            {
+                "header": "Otázka 1",
+                "content": "V jaký den se Lenka narodila?",
+                "select": null,
+                "correctStr": "v pondělí"
+            },
+            {
+                "header": "Otázka 2",
+                "content": "Narozeniny ve stejný den (ale jiný rok) má která z následujících osobností?",
+                "select": [
+                    "Katy Perry",
+                    "Miloš Zeman",
+                    "Britney Spears",
+                    "Jiřina Bohdalová"
+                ],
+                "correct": 2
+            },
+            {
+                "header": "Otázka 3",
+                "content": "Vrátíme se k roku narození. Jaké 2 akční filmy se Sylvesterem Stallonem měly premiéru v roce 1985? Za každý správný dostanete půl bodu. ",
+                "select": null,
+                "correctStr": "Rocky 4, Rambo 2"
+            },
+            {
+                "header": "Otázka 4",
+                "content": "U téhož roku ještě zůstaneme: Jaký formát hudebních nosičů se začal v roce 1985 masově prosazovat? (I když u nás velmi pomalu)",
+                "select": null,
+                "correctStr": "CD"
+            },
+            {
+                "header": "Otázka 5",
+                "content": "V tomto týdnu chodí na jednání s českým prezidentem zástupci nové vlády. Za jaké ministerstvo tam má jít politik narozený také roku 1985 - Filip Turek?",
+                "select": [
+                    "Ministerstvo dopravy a pokut",
+                    "Ministerstvo zahraničí",
+                    "Ministerstvo vědy a historie, zejména 2. světové války",
+                    "Ministerstvo životního prostředí "
+                ],
+                "correct": 3
+            }
+        ]
+    },
+    {
+        "sectionName": "Školy a zaměstnání",
+        "questions": [
+            {
+                "header": "Otázka 6",
+                "content": "Jak se jmenoval třídní učitel na druhém stupni ZŠ?",
+                "select": [
+                    "Jan Říha",
+                    "Igor Hnízdo",
+                    "Jaroslava Kosová",
+                    "Petr Plachý"
+                ],
+                "correct": 0
+            },
+            {
+                "header": "Otázka 7",
+                "content": "Na jakou střední školu chodila? Uveďte tehdejší název",
+                "select": null,
+                "correctStr": "Obchodní akademie"
+            },
+            {
+                "header": "Otázka 8",
+                "content": "Jaké zaměření vystudovala na VŠ? Napovíme, že se jednalo o dvojobor – za každý dostanete půl bodu.",
+                "select": null,
+                "correctStr": "Matematika + Speciální pedagogika"
+            },
+            {
+                "header": "Otázka 9",
+                "content": "Na jakou pozici nastupuje od ledna v nové práci?",
+                "select": [
+                    "Účetní",
+                    "Speciální pedagog",
+                    "Vedoucí DM",
+                    "Testér spacích pytlů"
+                ],
+                "correct": 1
+            },
+            {
+                "header": "Otázka 10 - Doplňovačka",
+                "content": "V den Lenčiných 40. narozenin (2.12.2025) se prodalo The Winter Egg — jeden z mála zbývajících privátních „vajíček“ od Fabergé byl prodán na aukci v Londýně. Za kolik liber? </br><img src='./img/vejce.png'>",
+                "select": null,
+                "correctStr": "22,9 milionu GBP"
+            }
+        ]
+    },
+    {
+        "sectionName": "Životní lásky",
+        "questions": [
+            {
+                "header": "Otázka 11",
+                "content": "Jak dlouhou dobu tvoří Lenka a Petr (Luďan a Dáša) pár?",
+                "select": [
+                    "8 let",
+                    "9 let",
+                    "10 let",
+                    "11 let"
+                ],
+                "correct": 2
+            },
+            {
+                "header": "Otázka 12",
+                "content": "Po svatbě kterého z přítomných párů jsme spolu začali chodit?",
+                "correctStr": "Lucka + Martin"
+            },
+            {
+                "header": "Otázka 13",
+                "content": "Kterého z členů kapely Lunetic měla nejraději?",
+                "select": null,
+                "correctStr": "Vaška"
+            },
+            {
+                "header": "Otázka 14",
+                "content": "Jaký je Leničky oblíbený film s Brucem Willisem v hlavní roli?",
+                "select": [
+                    "Pulp Fiction",
+                    "Armageddon",
+                    "Můj soused zabiják",
+                    "Titanic"
+                ],
+                "correct": 1
+            },
+            {
+                "header": "Otázka 15",
+                "content": "Seřaďte Snížkovic mláďata od nejstaršího k nejmladšímu",
+                "select": [
+                    "Kuba",
+                    "Adam",
+                    "Albert",
+                    "Vojta"
+                ],
+                "correctStr": "Adam, Vojta, Kuba, Albert"
+            }
+        ]
+    },
+    {
+        "sectionName": "Audiovizální téma",
+        "questions":[
+            {
+                "header":"Otázka 16",
+                "content": "Teď uslyšíte kousek oblíbené písničky. Víte z jakého filmu je?",
+                "select":null,
+                "correctStr": "Trainspotting (Underworld - Born Slippy)"
+            },
+            {
+                "header":"Otázka 17",
+                "content": "Ze kterého festivalu pochází tato fotka? </br><img src='./img/fest.png'>",
+                "select": ["Czechtekk", "Sázavafest", "Independent fest", "Porta"],
+                "correct": 2
+            },
+            {
+                "header":"Otázka 18",
+                "content": "Kolik let bylo dnešní oslavenkyni na této fotce? </br><img src='./img/mladalenka.png'>",
+                "select":null,
+                "correctStr": "18"
+            },
+            {
+                "header":"Otázka 19",
+                "content": "Jak se jmenuje pes na obrázku? <img src='./img/pes.png'>",
+                "select":null,
+                "correctStr": "Čenda"
+            },
+            {
+                "header":"Otázka 20",
+                "content": "Kolik knih je asi v Lenčině knihovně? ",
+                "select":null,
+                "correctStr": "TBD"
+            }
+        ]
+    }
 ]
